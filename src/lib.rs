@@ -31,7 +31,7 @@ async fn handler(tele: Telegram, placeholder_text: &str, system_prompt: &str, he
 
         let cf = ClaudeFlows::new();
         let mut co = chat::ChatOptions::default();
-        co.system_prompt = Some(system_prompt);
+        co.system = Some(system_prompt);
         co.max_tokens_to_sample = 1024;
 
 
