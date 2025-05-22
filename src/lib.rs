@@ -11,7 +11,7 @@ use flowsnet_platform_sdk::logger;
 #[tokio::main(flavor = "current_thread")]
 pub async fn run() -> anyhow::Result<()> {
     logger::init();
-    let telegram_token = std::env::var("telegram_token").unwrap();
+    let telegram_token = std::env::var("telegram_token").unwrap_or_else(|_| std::env::var("TELEGRAM_TOKEN").unwrap_or_else(|_| "".to_string()));
     let placeholder_text = std::env::var("placeholder").unwrap_or("Typing ...".to_string());
     let system_prompt = std::env::var("system_prompt").unwrap_or("You are a helpful assistant answering questions on Telegram.".to_string());
     let help_mesg = std::env::var("help_mesg").unwrap_or("I am your assistant on Telegram. Ask me any question! To start a new conversation, type the /restart command.".to_string());
