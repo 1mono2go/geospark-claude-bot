@@ -13,7 +13,7 @@ pub async fn run() -> anyhow::Result<()> {
     logger::init();
     let telegram_token = std::env::var("telegram_token").unwrap_or_else(|_| std::env::var("TELEGRAM_TOKEN").unwrap_or_else(|_| "".to_string()));
     let placeholder_text = std::env::var("placeholder").unwrap_or("Typing ...".to_string());
-    let system_prompt = std::env::var("system_prompt").unwrap_or("You are a helpful assistant answering questions on Telegram.".to_string());
+    let system_prompt = std::env::var("system_prompt").unwrap_or("You are a helpful assistant.".to_string());
     let help_mesg = std::env::var("help_mesg").unwrap_or("I am your assistant on Telegram. Ask me any question! To start a new conversation, type the /restart command.".to_string());
 
     listen_to_update(&telegram_token, |update| {
@@ -31,7 +31,7 @@ async fn handler(tele: Telegram, placeholder_text: &str, system_prompt: &str, he
 
         let cf = ClaudeFlows::new();
         let mut co = chat::ChatOptions::default();
-        co.system = Some(system_prompt);
+        co.system_prompt = Some(system_prompt);
         co.max_tokens_to_sample = 1024;
 
 
