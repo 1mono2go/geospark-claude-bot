@@ -1,0 +1,7 @@
+{
+  "repo_name": "geospark-claude-bot",
+  "deployment_type": "safe",
+  "created_at": "2025-06-13T19:26:06.090190",
+  "safety_check": "PASSED",
+  "blocked_content_scan": "CLEAN"
+}
